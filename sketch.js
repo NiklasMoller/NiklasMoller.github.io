@@ -71,21 +71,18 @@ else if((anim.currentFrame > ostadigtOutFrame) && (stateflag==ostadigtFlag)){
   loopCounter++;
   checkForUpdate(loopCounter);
 }else if(anim.currentFrame > endFrame){
-  console.log("Current frame greater than endframe. Went to playhandler()");
   playHandler();
 }
 
 }
 
 function mousePressed() {
-  console.log("Setting fullscreen");
   let fs = fullscreen();
   fullscreen(!fs);
 }
 
 function checkForUpdate(lc){
   if(lc > numberOfLoopIterations){
-    console.log("About to update");
     update();
     loopCounter = 0;
 }
@@ -147,33 +144,27 @@ function playHandler(){
   setStateflag();
 
   if(stateflag == regnFlag){
-    console.log("In playHandler() about to play regn");
     playRegn();
   }
   else if (stateflag == vackertFlag){
-    console.log("In playHandler() about to play vackert");
     playVackert();
   }else if (stateflag == ostadigtFlag){
-    console.log("In playHandler() about to play ostadigt");
     playOstadigt();
   }
 
 }
 
 function playVackert(){
-    console.log("Playing vackert");
     anim.goToAndStop(vackertInFrame, true);
     setTimeout(function(){ anim.goToAndPlay(vackertInFrame, true); }, 4000);    
 }
 
 function playRegn(){
-  console.log("Playing regn");
   anim.goToAndStop(regnInFrame, true);
   setTimeout(function(){ anim.goToAndPlay(regnInFrame, true); }, 3000);
 }
 
 function playOstadigt(){
-  console.log("Playing ostadigt");
   anim.goToAndPlay(ostadigtInFrame, true);
 }
 
