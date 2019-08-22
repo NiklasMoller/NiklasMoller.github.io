@@ -20,7 +20,7 @@ const regnFlag = 1;
 const ostadigtFlag = 2;
 const vackertFlag = 3;
 
-const numberOfLoopIterations = 5;
+const numberOfLoopIterations = 3; //Update to 5 later
 
 const toMercury = 0.75006375541921;
 
@@ -92,6 +92,8 @@ function update(){
   loadWeatherData();
   setTimeout(function(){ setPressure(); }, 4000); //Delay to let JSON data load
   setTimeout(function(){ setStateflag(); }, 5000);
+  mousePressed();
+  setTimeout(function(){ mousePressed(); }, 5000);
 }
 
 function loadAnim(){
