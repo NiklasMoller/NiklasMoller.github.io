@@ -81,6 +81,11 @@ function mousePressed() {
   fullscreen(!fs);
 }
 
+function setFullscreen(){
+  let fs = fullscreen();
+  fullscreen(!fs);
+}
+
 function checkForUpdate(lc){
   if(lc > numberOfLoopIterations){
     update();
@@ -92,8 +97,8 @@ function update(){
   loadWeatherData();
   setTimeout(function(){ setPressure(); }, 4000); //Delay to let JSON data load
   setTimeout(function(){ setStateflag(); }, 5000);
-  mousePressed();
-  setTimeout(function(){ mousePressed(); }, 5000);
+  setFullscreen();
+  setTimeout(function(){ setFullscreen(); }, 5000);
 }
 
 function loadAnim(){
