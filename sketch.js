@@ -20,7 +20,7 @@ const regnFlag = 1;
 const ostadigtFlag = 2;
 const vackertFlag = 3;
 
-const numberOfLoopIterations = 3; //Update to 5 later
+const numberOfLoopIterations = 5;
 
 const toMercury = 0.75006375541921;
 
@@ -77,11 +77,6 @@ else if((anim.currentFrame > ostadigtOutFrame) && (stateflag==ostadigtFlag)){
 }
 
 function mousePressed() {
-  let fs = fullscreen();
-  fullscreen(!fs);
-}
-
-function setFullscreen(){
   let fs = fullscreen();
   fullscreen(!fs);
 }
