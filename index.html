@@ -3,18 +3,75 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
   <title>niklasmoller.github.io</title>
   <meta name="description" content="niklasmoller.github.io">
+
+<style>
+
+body {
+  background-color: LightSeaGreen;
+}
+
+h2 {
+  color: Wheat;;
+}
+
+.info-text {
+  color: white;
+  font-size: 16px;
+}
+
+.click-button{
+  position: absolute;
+  bottom: 10px;
+  color: LightSeaGreen;
+}
+
+.input-field{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+#link-text {
+  color: wheat;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+</style>
 
 </head>
 
 <body>
 
-<h3>GitHub page for NiklasMoller</h3>
-<h4>Only used for developing</h2>
 
+<h2>NiklasMoller.github.io</h2>
+<p class=info-text>Here I keep some of my developments
+<br>
+<br>
+Click below to navigate to existing projects:
+</p>
 
+<ol class ="info-text">
+  <li><a href="https://niklasmoller.github.io/folkteatern/" id="link-text" target="_blank">Folkteatern</a></li>
+</ol>
+<br>
+<p class="info-text">For repositories, please visit my
+<a href="https://github.com/NiklasMoller" id="link-text" target="_blank">GitHub</a>
+</p>
+<button class="click-button" onclick="showAlert()">Click me</button>
+
+<input type="text" id="myInput" class="input-field" value="Write something">
+
+<script>
+
+function showAlert(){
+  var message = document.getElementById("myInput").value;
+  alert("In the input field its written: " + message);
+}
+
+</script>
 
 </body>
 </html>
