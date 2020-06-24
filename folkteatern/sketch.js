@@ -158,7 +158,7 @@ function playHandler(){
 
 function playVackert(){
     anim.goToAndStop(vackertInFrame, true);
-    setTimeout(function(){ anim.goToAndPlay(vackertInFrame, true); }, 4000);    
+    setTimeout(function(){ anim.goToAndPlay(vackertInFrame, true); }, 4000);
 }
 
 function playRegn(){
@@ -169,4 +169,3 @@ function playRegn(){
 function playOstadigt(){
   anim.goToAndPlay(ostadigtInFrame, true);
 }
-
