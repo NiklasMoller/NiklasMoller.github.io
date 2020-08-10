@@ -9,7 +9,16 @@
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
     <script>
-      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/BuildIntro10Aug.json", {onProgress: UnityProgress});
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/BuldIntro10AugResize.json", {onProgress: UnityProgress});
+      window.addEventListener("resize", onResize);
+
+      function onResize(){
+        //unityInstance.sendMessage("WindowSizeHandler", "SetWidth", window.innerWidth);
+        //unityInstance.sendMessage("WindowSizeHandler", "SetHeight", window.innerHeight);
+        unityInstance.sendMessage("WindowSizeHandler", "OnResize", window.innerWidth, window.innerHeight);
+      }
+
+
     </script>
   </head>
   <body style="margin:0; overflow:hidden">
