@@ -3,75 +3,54 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>niklasmoller.github.io</title>
-  <meta name="description" content="niklasmoller.github.io">
 
-<style>
+  <title>A New Tree Grows - an interactive movie</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
 
-body {
-  background-color: LightSeaGreen;
-}
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
 
-h2 {
-  color: Wheat;;
-}
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@200&display=swap" rel="stylesheet">
 
-.info-text {
-  color: white;
-  font-size: 16px;
-}
+  <style>
 
-.click-button{
-  position: absolute;
-  bottom: 10px;
-  color: LightSeaGreen;
-}
+    body {background-color: black;}
 
-.input-field{
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-}
+    .text-centre {
+    font-family: 'Exo', sans-serif;
+      color: #F5FFFA;
+      margin-left: 20px;
+      text-align: center;
+        padding: 130px 0;
+        font-size: 1.5em;
+    }
 
-#link-text {
-  color: wheat;
-  font-weight: bold;
-  font-size: 16px;
-}
+    .big {
+font-size: 1.5em;
+    }
 
-</style>
+  </style>
+
+
 
 </head>
 
 <body>
 
 
-<h2>NiklasMoller.github.io</h2>
-<p class=info-text>Here I keep some of my developments
+    <div class="text-centre">
+
+<h1>A New Tree Grows</h1>
+<h2> - an interactive movie</h2>
 <br>
-<br>
-Click below to navigate to existing projects:
-</p>
 
-<ol class ="info-text">
-  <li><a href="https://niklasmoller.github.io/folkteatern/" id="link-text" target="_blank">Folkteatern</a></li>
-</ol>
-<br>
-<p class="info-text">For repositories, please visit my
-<a href="https://github.com/NiklasMoller" id="link-text" target="_blank">GitHub</a>
-</p>
-<button class="click-button" onclick="showAlert()">Click me</button>
+    <div class="big">
+<h1>Launching Spring 2021</h1>
 
-<input type="text" id="myInput" class="input-field" value="Write something">
+</div>
+</div>
 
-<script>
-
-function showAlert(){
-  var message = document.getElementById("myInput").value;
-  alert("In the input field its written: " + message);
-}
-
-</script>
 
 </body>
 </html>
