@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | A New Tree Grows Prototyping</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/22feb.json", {onProgress: UnityProgress});
+
+      function UnityProgress(unityInstance, progress) {
+        console.log(progress);
+      }
+
+
+
+      window.addEventListener("resize", onResize);
+
+      function onResize(){
+        unityInstance.SendMessage("WindowSizeHandler", "SetWidth", window.innerWidth);
+        unityInstance.SendMessage("WindowSizeHandler", "SetHeight", window.innerHeight);
+        unityInstance.SendMessage("WindowSizeHandler", "OnResize");
+      }
+
+      function toggleFullscreen(){
+        if (document.fullscreenElement) {
+          // exitFullscreen is only available on the Document object.
+          document.exitFullscreen();
+        } else {
+          document.documentElement.requestFullscreen();
+        }
+      }
+
+        document.documentElement.addEventListener('fullscreenchange', (event) => {
+            console.log(`Fullscreen event listener activated`);
+            unityInstance.SendMessage("FullscreenButton", "updateImageOnExternalFullscreen");
+        });
+
+
+    </script>
+  </head>
+  <body style="margin:0; overflow:hidden">
+      <div id="unityContainer" ></div>
+  </body>
+</html>
