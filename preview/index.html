@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | A New Tree Grows Prototyping</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script src="./bodymovin.js"></script>
+    <script src="./checkdevicetype.js"></script>
+    <script src="./resizehandler.js"></script>
+    <script src="./fullscreenhandler.js"></script>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
+    <script>
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/20mars.json", {onProgress: UnityProgress});
+    </script>
+    <script src="./resizehandler.js"></script>
+  </head>
+  <body style="margin:0; overflow:hidden">
+
+    <div id="overlay">
+    <div id="container">
+    <div id="bm">
+    </div>
+<button id="btn" class="button" onclick="buttonClick()">I'v plugged my headphones in ˃˃ </button>
+           <br>
+    <img id="loadingImage" src="no_desktop.png" style="visibility:hidden"/>
+</div>
+</div>
+
+<script>
+
+//document.getElementById("overlay").style.display = "block";
+
+var animation;
+var loadingInterval;
+
+//Referenspunkter animation
+const headphonesFrame = 433;
+const headphonesStop = 431;
+const loadingFrameStart = 486;
+const loadingFrameEnd = 545;
+
+const removeOverlayMS = 18000;
+
+window.gameIsRunning = false;
+window.buttonIsPressed = false;
+
+document.getElementById("btn").disabled = true;
+
+if(getDeviceType() == "desktop"){
+
+animation = lottie.loadAnimation({
+    container: document.getElementById('bm'), // the dom element that will contain the animation
+    renderer: 'svg',
+    loop: false,
+    autoplay: true,
+    path: 'data.json', // the path to the animation json
+    initialSegment: [1,headphonesFrame]
+  });
+
+  animation.addEventListener('enterFrame', () => {
+
+    if(animation.currentFrame == headphonesStop)
+    {
+      //Changes the class to fade in
+      document.getElementById("btn").disabled = false;
+      document.getElementById('btn').className = 'fade-in-button';
+
+    }
+/*
+    if(animation.currentFrame == loadingFrameEnd){
+      animation.playSegments([loadingFrameStart, loadingFrameEnd], true);
+    }
+*/
+  });
+}else{
+  document.getElementById("loadingImage").style.visibility = "visible";
+}
+
+function buttonClick(){
+
+window.buttonIsPressed = true;
+
+toggleFullscreen();
+
+document.getElementById('btn').className = 'fade-out-button';
+document.getElementById("btn").disabled = true;
+
+
+if(window.gameIsRunning){
+
+startGame();
+
+}else{
+
+//Play lottie animation with a loop
+animation.playSegments([loadingFrameStart, loadingFrameEnd], true)
+console.log('Playing looping segments')
+
+//SetIntervalWithFunction loading();
+//loadingInterval = setInterval(loading(), 500);
+
+}}
+
+
+//Shall be deleted
+function loading(){
+  if(window.gameIsRunning){
+    startGame();
+  }
+}
+
+
+/* Unity calls this one when it is loaded. If button Is pressed game starts*/
+function startGameIfButtonPressed(){
+
+if(window.buttonIsPressed){
+  startGame();
+
+}
+
+}
+
+
+
+
+
+/*
+
+när man trycker på knappen
+if window.gameIsRunning = true
+StartGame
+
+Else show loading screen
+
+*/
+
+
+function startGame(){
+  console.log('StartGame');
+  //FunctionCallToUnityToStart
+  startUnity();
+
+  //Fade out bm quiclky
+  document.getElementById('bm').className = 'fade-out-bm';
+
+  //Fade out and remove overlay
+  document.getElementById('overlay').className = 'fade-out-overlay';
+
+  //remove setInterval
+  clearInterval(loadingInterval);
+
+  var timeout = setTimeout(removeOverlay, removeOverlayMS);
+}
+
+function startUnity(){
+  unityInstance.SendMessage('StartUnityFromBrowser', 'StartGameFromBrowser');
+}
+
+
+function removeOverlay(){
+  console.log('Removing overlay');
+
+  //Remove Lottie from DOM
+  lottie.destroy();
+
+  //Remove Overlay
+  var myobj = document.getElementById("overlay");
+  myobj.remove();
+}
+
+</script>
+      <div id="unityContainer" ></div>
+  </body>
+</html>
