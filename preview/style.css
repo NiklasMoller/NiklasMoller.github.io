@@ -3,6 +3,7 @@
 }
 
 
+
 #overlay {
   position: fixed;
   display: none;
@@ -16,9 +17,34 @@
   z-index: 2;
   cursor: pointer;
   display: block;
+
+
 }
 
 
+a {
+    padding-top: 20px;
+  margin-left: 30px;
+  font-family: 'Raleway', sans-serif;
+color: #b5b5b5;
+font-size: 15px
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
 
 #container{
   margin: auto;
@@ -60,6 +86,15 @@
 
 #noDesktopImage {
   visibility: hidden;
+  padding: 0;
+  display: block;
+  margin: 0 auto;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+#introgif {
+  visibility: hidden;
 }
 
 
@@ -69,8 +104,8 @@
 
 .fade-in-button {
   background-color: #000000;
-  border: 1px solid white;
-  color: white;
+  border: 1px solid #b5b5b5;
+  color: #b5b5b5;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -88,10 +123,25 @@
   -ms-animation: fadeIn ease 5s;
 }
 
-
 .fade-in-button:hover {
   background-color: #c9c9c9;
   color: black;
+}
+
+.fade-in-image {
+  animation: fadeIn forwards 3s;
+  -webkit-animation: fadeIn forwards 3s;
+  -moz-animation: fadeIn forwards 3s;
+  -o-animation: fadeIn forwards 3s;
+  -ms-animation: fadeIn forwards 3s;
+}
+
+.fade-out-link {
+  animation: fadeOut forwards 3s;
+  -webkit-animation: fadeOut forwards 3s;
+  -moz-animation: fadeOut forwards 3s;
+  -o-animation: fadeOut forwards 3s;
+  -ms-animation: fadeOut forwards 3s;
 }
 
 

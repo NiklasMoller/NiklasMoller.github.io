@@ -1,9 +1,20 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4DQKNVC8D"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-Y4DQKNVC8D');
+    </script>
+
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | A New Tree Grows Prototyping</title>
+    <title>A New Tree Grows</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <script src="TemplateData/UnityProgress.js"></script>
@@ -11,20 +22,29 @@
     <script src="./bodymovin.js"></script>
     <script src="./checkdevicetype.js"></script>
     <script src="./resizehandler.js"></script>
-    <script src="./fullscreenhandler.js"></script>
+
     <link rel="stylesheet" type="text/css" href="./style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
     <script>
-      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/21mars.json", {onProgress: UnityProgress});
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/29mars3.json", {onProgress: UnityProgress});
     </script>
     <script src="./resizehandler.js"></script>
   </head>
   <body style="margin:0; overflow:hidden">
 
     <div id="overlay">
+
+      <br>
+      <div id="link">
+ <a href="../info.html" target="_blank">Info</a>
+</div>
+
     <div id="container">
     <div id="bm">
+
+      <img id="introgif" src="intro.gif" style="visibility:visible"/>
+
     </div>
 <button id="btn" class="button" onclick="buttonClick()">I'v plugged my headphones in ˃˃ </button>
            <br>
@@ -32,6 +52,7 @@
 </div>
 </div>
 
+    <script src="./fullscreenhandler.js"></script>
 <script>
 
 //document.getElementById("overlay").style.display = "block";
@@ -48,49 +69,38 @@ const loadingFrameEnd = 545;
 const removeOverlayMS = 18000;
 
 window.gameIsRunning = false;
-window.buttonIsPressed = false;
+var buttonIsPressed = false;
 
 document.getElementById("btn").disabled = true;
 
 if(getDeviceType() == "desktop"){
 
-animation = lottie.loadAnimation({
-    container: document.getElementById('bm'), // the dom element that will contain the animation
-    renderer: 'svg',
-    loop: false,
-    autoplay: true,
-    path: 'data.json', // the path to the animation json
-    initialSegment: [1,headphonesFrame]
-  });
+  document.getElementById("introgif").style.visibility = "visible";
 
-  animation.addEventListener('enterFrame', () => {
+  setTimeout(function(){
+    document.getElementById("btn").disabled = false;
+    document.getElementById('btn').className = 'fade-in-button';
 
-    if(animation.currentFrame == headphonesStop)
-    {
-      //Changes the class to fade in
-      document.getElementById("btn").disabled = false;
-      document.getElementById('btn').className = 'fade-in-button';
+  }, 17200);
 
-    }
-/*
-    if(animation.currentFrame == loadingFrameEnd){
-      animation.playSegments([loadingFrameStart, loadingFrameEnd], true);
-    }
-*/
-  });
 }else{
   document.getElementById("loadingImage").style.visibility = "visible";
+
+  document.getElementById("introgif").style.display = "none";
 }
+
 
 function buttonClick(){
 
-window.buttonIsPressed = true;
-
-//toggleFullscreen();
+openFullscreen();
 
 document.getElementById('btn').className = 'fade-out-button';
 document.getElementById("btn").disabled = true;
 
+document.getElementById('introgif').className = 'fade-in-image';
+document.getElementById("introgif").src="../pleasewait.gif";
+
+buttonIsPressed = true;
 
 if(window.gameIsRunning){
 
@@ -98,47 +108,26 @@ startGame();
 
 }else{
 
-//Play lottie animation with a loop
-animation.playSegments([loadingFrameStart, loadingFrameEnd], true)
-console.log('Playing looping segments')
+  document.getElementById("introgif").style.visibility = "hidden";
 
-//SetIntervalWithFunction loading();
-//loadingInterval = setInterval(loading(), 500);
+    document.getElementById("waitgif").style.visibility = "visible";
+
+
 
 }}
 
 
-//Shall be deleted
-function loading(){
-  if(window.gameIsRunning){
-    startGame();
-  }
-}
 
 
 /* Unity calls this one when it is loaded. If button Is pressed game starts*/
 function startGameIfButtonPressed(){
 
-if(window.buttonIsPressed){
+if(buttonIsPressed){
   startGame();
-
 }
 
 }
 
-
-
-
-
-/*
-
-när man trycker på knappen
-if window.gameIsRunning = true
-StartGame
-
-Else show loading screen
-
-*/
 
 
 function startGame(){
@@ -146,14 +135,19 @@ function startGame(){
   //FunctionCallToUnityToStart
   startUnity();
 
-  //Fade out bm quiclky
-  document.getElementById('bm').className = 'fade-out-bm';
-
   //Fade out and remove overlay
   document.getElementById('overlay').className = 'fade-out-overlay';
 
-  //remove setInterval
-  clearInterval(loadingInterval);
+  document.getElementById('link').className = 'fade-out-link';
+
+
+  //Fade out bm quiclky
+  document.getElementById('bm').className = 'fade-out-bm';
+
+
+  //document.getElementById('link').className = 'fade-out-link';
+
+
 
   var timeout = setTimeout(removeOverlay, removeOverlayMS);
 }
@@ -167,7 +161,7 @@ function removeOverlay(){
   console.log('Removing overlay');
 
   //Remove Lottie from DOM
-  lottie.destroy();
+  //lottie.destroy();
 
   //Remove Overlay
   var myobj = document.getElementById("overlay");
