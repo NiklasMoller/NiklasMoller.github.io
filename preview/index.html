@@ -17,6 +17,7 @@
     <title>A New Tree Grows</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
     <script src="./bodymovin.js"></script>
@@ -37,8 +38,8 @@
 
       <br>
       <div id="link">
- <a href="../info.html" target="_blank">Info</a>
-</div>
+      <a href="../info.html" target="_blank">Info</a>
+      </div>
 
     <div id="container">
     <div id="bm">
@@ -46,7 +47,7 @@
       <img id="introgif" src="intro.gif" style="visibility:visible"/>
 
     </div>
-<button id="btn" class="button" onclick="buttonClick()">I'v plugged my headphones in ˃˃ </button>
+<button id="btn" onclick="buttonClick()">I'v plugged my headphones in  ˃˃ </button>
            <br>
     <img id="loadingImage" src="no_desktop.png" style="visibility:hidden"/>
 </div>
@@ -56,15 +57,6 @@
 <script>
 
 //document.getElementById("overlay").style.display = "block";
-
-var animation;
-var loadingInterval;
-
-//Referenspunkter animation
-const headphonesFrame = 433;
-const headphonesStop = 431;
-const loadingFrameStart = 486;
-const loadingFrameEnd = 545;
 
 const removeOverlayMS = 18000;
 
@@ -79,13 +71,20 @@ if(getDeviceType() == "desktop"){
 
   setTimeout(function(){
     document.getElementById("btn").disabled = false;
-    document.getElementById('btn').className = 'fade-in-button';
+    //document.getElementById('btn').className = 'fade-in-button';
 
-  }, 17200);
+    $(document).ready(function(){
+
+    $("#btn").fadeIn(3000);
+});
+
+  }, 16500);
 
 }else{
+  //Show "This is for desktop"-image
   document.getElementById("loadingImage").style.visibility = "visible";
 
+  //Make Welcome GIF invisible
   document.getElementById("introgif").style.display = "none";
 }
 
@@ -94,9 +93,9 @@ function buttonClick(){
 
 openFullscreen();
 
-document.getElementById('btn').className = 'fade-out-button';
+//document.getElementById('btn').className = 'fade-out-button';
 document.getElementById("btn").disabled = true;
-
+    $("#btn").fadeOut(2000);
 
 
 buttonIsPressed = true;
@@ -107,15 +106,13 @@ startGame();
 
 }else{
 
-  document.getElementById('introgif').className = 'fade-in-image';
   document.getElementById("introgif").src="pleasewait.gif";
+  document.getElementById("introgif").style.display ="none";
+  $("#introgif").fadeIn(3000);
 
-  document.getElementById("introgif").style.visibility = "hidden";
+  //document.getElementById("introgif").style.visibility = "hidden";
 
   //document.getElementById("waitgif").style.visibility = "visible";
-
-
-
 }}
 
 
@@ -140,16 +137,18 @@ function startGame(){
   //Fade out and remove overlay
   document.getElementById('overlay').className = 'fade-out-overlay';
 
-  document.getElementById('link').className = 'fade-out-link';
-
-
-  //Fade out bm quiclky
-  document.getElementById('bm').className = 'fade-out-bm';
-
+      $("#overlay").fadeOut(15000);
+      $("#link").fadeOut(2000);
+      $("#bm").fadeOut(2000);
 
   //document.getElementById('link').className = 'fade-out-link';
 
 
+  //Fade out bm quiclky
+  //document.getElementById('bm').className = 'fade-out-bm';
+
+
+  //document.getElementById('link').className = 'fade-out-link';
 
   var timeout = setTimeout(removeOverlay, removeOverlayMS);
 }
