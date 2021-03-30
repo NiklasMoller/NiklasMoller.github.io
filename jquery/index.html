@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4DQKNVC8D"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-Y4DQKNVC8D');
+    </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>A New Tree Grows</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script src="./bodymovin.js"></script>
+    <script src="./checkdevicetype.js"></script>
+    <script src="./resizehandler.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
+    <script>
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/29mars3.json", {onProgress: UnityProgress});
+    </script>
+    <script src="./resizehandler.js"></script>
+  </head>
+  <body style="margin:0; overflow:hidden">
+
+    <div id="overlay">
+
+      <br>
+      <div id="link">
+      <a href="../info.html" target="_blank">Info</a>
+      </div>
+
+    <div id="container">
+    <div id="bm">
+
+      <img id="introgif" src="intro.gif" style="visibility:visible"/>
+
+    </div>
+<button id="btn" onclick="buttonClick()">I'v plugged my headphones in  ˃˃ </button>
+           <br>
+    <img id="loadingImage" src="no_desktop.png" style="visibility:hidden"/>
+</div>
+</div>
+
+    <script src="./fullscreenhandler.js"></script>
+<script>
+
+//document.getElementById("overlay").style.display = "block";
+
+const removeOverlayMS = 18000;
+
+window.gameIsRunning = false;
+var buttonIsPressed = false;
+
+document.getElementById("btn").disabled = true;
+
+if(getDeviceType() == "desktop"){
+
+  document.getElementById("introgif").style.visibility = "visible";
+
+  setTimeout(function(){
+    document.getElementById("btn").disabled = false;
+    //document.getElementById('btn').className = 'fade-in-button';
+
+    $(document).ready(function(){
+
+    $("#btn").fadeIn(3000);
+});
+
+  }, 16500);
+
+}else{
+  //Show "This is for desktop"-image
+  document.getElementById("loadingImage").style.visibility = "visible";
+
+  //Make Welcome GIF invisible
+  document.getElementById("introgif").style.display = "none";
+}
+
+
+function buttonClick(){
+
+openFullscreen();
+
+//document.getElementById('btn').className = 'fade-out-button';
+document.getElementById("btn").disabled = true;
+    $("#btn").fadeOut(2000);
+
+
+buttonIsPressed = true;
+
+if(window.gameIsRunning){
+
+startGame();
+
+}else{
+
+  document.getElementById("introgif").src="pleasewait.gif";
+  document.getElementById("introgif").style.display ="none";
+  $("#introgif").fadeIn(3000);
+
+  //document.getElementById("introgif").style.visibility = "hidden";
+
+  //document.getElementById("waitgif").style.visibility = "visible";
+}}
+
+
+
+
+/* Unity calls this one when it is loaded. If button Is pressed game starts*/
+function startGameIfButtonPressed(){
+
+if(buttonIsPressed){
+  startGame();
+}
+
+}
+
+
+
+function startGame(){
+  console.log('StartGame');
+  //FunctionCallToUnityToStart
+  startUnity();
+
+  //Fade out and remove overlay
+  document.getElementById('overlay').className = 'fade-out-overlay';
+
+      $("#overlay").fadeOut(15000);
+      $("#link").fadeOut(2000);
+      $("#bm").fadeOut(2000);
+
+  //document.getElementById('link').className = 'fade-out-link';
+
+
+  //Fade out bm quiclky
+  //document.getElementById('bm').className = 'fade-out-bm';
+
+
+  //document.getElementById('link').className = 'fade-out-link';
+
+  var timeout = setTimeout(removeOverlay, removeOverlayMS);
+}
+
+function startUnity(){
+  unityInstance.SendMessage('StartUnityFromBrowser', 'StartGameFromBrowser');
+}
+
+
+function removeOverlay(){
+  console.log('Removing overlay');
+
+  //Remove Lottie from DOM
+  //lottie.destroy();
+
+  //Remove Overlay
+  var myobj = document.getElementById("overlay");
+  myobj.remove();
+}
+
+</script>
+      <div id="unityContainer" ></div>
+  </body>
+</html>
