@@ -23,14 +23,14 @@
     <script src="./bodymovin.js"></script>
     <script src="./checkdevicetype.js"></script>
     <script src="./resizehandler.js"></script>
+    <script src="./shareHandler.js"></script>
 
     <link rel="stylesheet" type="text/css" href="./style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
     <script>
-      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/29mars3.json", {onProgress: UnityProgress});
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/1april.json", {onProgress: UnityProgress});
     </script>
-    <script src="./resizehandler.js"></script>
   </head>
   <body style="margin:0; overflow:hidden">
 
@@ -53,7 +53,9 @@
 </div>
 </div>
 
+<script src="./resizehandler.js"></script>
     <script src="./fullscreenhandler.js"></script>
+
 <script>
 
 //document.getElementById("overlay").style.display = "block";
@@ -91,9 +93,39 @@ if(getDeviceType() == "desktop"){
 
 function buttonClick(){
 
-openFullscreen();
+  buttonIsPressed = true;
 
-//document.getElementById('btn').className = 'fade-out-button';
+  openFullscreenPromise()
+.then(result => {
+    console.log('Result for first promise is: ' + result);
+    
+    return checkIfButtonIsPressedPromise();
+} ).then(result =>{
+  console.log('Result for second promise is: ' + result);
+
+  return fadeOutOverlay();
+
+}).then(result => {
+  console.log('Result for third promise is: ' + result);
+
+  return startUnity();
+
+}).then(result =>{
+  console.log('Result for fourth promise is: ' + result)
+
+  var timeout = setTimeout(removeOverlay, removeOverlayMS);
+}).catch(callback =>{
+  console.log('Something went wrong: ' + callback);
+})
+
+}
+
+
+function checkIfButtonIsPressed(){
+
+console.log('Running checkIfButtonIsPressed');
+
+  //document.getElementById('btn').className = 'fade-out-button';
 document.getElementById("btn").disabled = true;
     $("#btn").fadeOut(2000);
 
@@ -113,8 +145,31 @@ startGame();
   //document.getElementById("introgif").style.visibility = "hidden";
 
   //document.getElementById("waitgif").style.visibility = "visible";
-}}
+}
 
+}
+
+
+
+function checkIfButtonIsPressedPromise(){
+
+return new Promise((resolve, reject) =>{
+
+  document.getElementById("btn").disabled = true;
+    $("#btn").fadeOut(2000);
+
+if(window.gameIsRunning){
+  resolve('Game is running');
+}else{
+  document.getElementById("introgif").src="pleasewait.gif";
+  document.getElementById("introgif").style.display ="none";
+  $("#introgif").fadeIn(3000);
+  reject('Unity has yet not completed loading')
+}
+
+})
+
+}
 
 
 
@@ -122,24 +177,35 @@ startGame();
 function startGameIfButtonPressed(){
 
 if(buttonIsPressed){
-  startGame();
-}
+
+//Start a new promise chain here
+fadeOutOverlay()
+.then(result => {
+  console.log('Unity starts up by itself (button has been pressed. Promise message 1 = ' + result);
+
+  return startUnity();
+}).then(result => {
+
+  console.log('Unity starts up by itself (button has been pressed. Promise message 2  ' + result);
+
+  var timeout = setTimeout(removeOverlay, removeOverlayMS);
 
 }
+).catch(callback =>{
+  console.log('Something went wrong: ' + callback);
+})
+}
+}
+
 
 
 
 function startGame(){
   console.log('StartGame');
   //FunctionCallToUnityToStart
-  startUnity();
 
-  //Fade out and remove overlay
-  document.getElementById('overlay').className = 'fade-out-overlay';
 
-      $("#overlay").fadeOut(15000);
-      $("#link").fadeOut(2000);
-      $("#bm").fadeOut(2000);
+
 
   //document.getElementById('link').className = 'fade-out-link';
 
@@ -150,11 +216,42 @@ function startGame(){
 
   //document.getElementById('link').className = 'fade-out-link';
 
-  var timeout = setTimeout(removeOverlay, removeOverlayMS);
+
 }
 
+function fadeOutOverlay(){
+
+
+  return new Promise((resolve, reject) =>{
+
+      //Fade out and remove overlay
+      $("#overlay").fadeOut(15000);
+      $("#link").fadeOut(1800);
+      $("#bm").fadeOut(1800);
+
+      resolve('Fade Out Overlay');
+
+
+  })
+
+
+
+}
+
+//      
+
 function startUnity(){
-  unityInstance.SendMessage('StartUnityFromBrowser', 'StartGameFromBrowser');
+
+  
+  return new Promise((resolve, reject) =>{
+
+    unityInstance.SendMessage('StartUnityFromBrowser', 'StartGameFromBrowser');
+    resolve('Calling from A NEW TREE GROWS js to UnityInstance, Starting Unity from Browser');
+
+})
+
+
+
 }
 
 
