@@ -4,9 +4,9 @@ function onResize(){
 
   $(document).ready(function(){
     
-    unityInstance.SendMessage("WindowSizeHandler", "SetWidth", window.innerWidth);
-    unityInstance.SendMessage("WindowSizeHandler", "SetHeight", window.innerHeight);
-    unityInstance.SendMessage("WindowSizeHandler", "OnResize");
+    unityInstance.SendMessage("WindowResizeHandler", "SetWidth", window.innerWidth);
+    unityInstance.SendMessage("WindowResizeHandler", "SetHeight", window.innerHeight);
+    unityInstance.SendMessage("WindowResizeHandler", "OnResize");
   
   });
 
