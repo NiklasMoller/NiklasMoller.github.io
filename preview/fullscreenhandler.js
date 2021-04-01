@@ -53,9 +53,7 @@ if(document.fullscreenEnabled){
 
 
 
-function openFullscreenPromise() {
-
-  return new Promise(function(resolve){
+let openFullscreenPromise = new Promise(function(resolve){
 
   //This tells if fullscreen is supported
   if(document.fullscreenEnabled){
@@ -83,10 +81,6 @@ function openFullscreenPromise() {
 
   })
 
-
-  
-  
-  }
 
 
 document.documentElement.addEventListener('fullscreenchange', (event) => {
