@@ -75,7 +75,7 @@ let openFullscreenPromise = new Promise(function(resolve){
         }
       
       
-        }{
+        }else{
           resolve('Fullscreen not opened');   
         }
 
