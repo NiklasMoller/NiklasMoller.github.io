@@ -204,8 +204,10 @@ document.getElementById("introgif").style.display = "none";
 if(callback == "WEBGL2 Failed"){
   document.getElementById("loadingImage").src = "WebGl2Error.png";
   document.getElementById("loadingImage").style.visibility = "visible";
+  console.log("Display WebGL2.0 ERROR")
 }else if(callback == "No desktop"){
   document.getElementById("loadingImage").style.visibility = "visible";
+  console.log("Display wrong device type")
 }
 
 console.log('Catch callback, something went wrong');
