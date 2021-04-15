@@ -173,11 +173,10 @@ fadeOutOverlay()
 
 
 
-
-checkWebGL2()
+getDeviceType()
 .then(result => {
   console.log(result);
-  return  getDeviceType();
+  return  checkWebGL2();
 }).then(result =>{
   console.log(result);
 
