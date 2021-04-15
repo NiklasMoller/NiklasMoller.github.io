@@ -91,3 +91,11 @@ a:active {
   visibility: hidden;
 }
 
+
+#loadingImage{
+    margin-top: 35px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
