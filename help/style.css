@@ -23,54 +23,37 @@ body{
   margin-top: 10px;
   margin-left: 300px;
   margin-right: 300px;
+  line-height: 1.4;
 
 }
 
-.text-donate{
 
+a{
+  padding-top: 20px;
+  margin-left: 30px;
   font-family: 'Raleway', sans-serif;
-  color: #a8a8a8;
-  text-align: center;
+  color: #b5b5b5;
   font-size: 20px;
-  font-weight: normal;
-  margin-top: 20px;
-  margin-left: 300px;
-  margin-right: 300px;
-
-}
-
-.gbg{
-
-  font-family: 'Raleway', sans-serif;
-  color: #a8a8a8;
   text-align: center;
-  font-size: 16px;
-  font-weight: normal;
-  margin-top: 20px;
-  margin-left: 300px;
-  margin-right: 300px;
-
 }
 
-.credits{
-  font-family: 'Raleway', sans-serif;
-  color: #a8a8a8;
-  text-align: center;
-  font-size: 20px;
-  font-weight: normal;
-  margin-top: 25px;
-    line-height: 1.3;
+a:link {
+  text-decoration: none;
 }
 
-.contact{
-  font-family: 'Raleway', sans-serif;
-  color: #a8a8a8;
-  text-align: center;
-  font-size: 20px;
-  font-weight: normal;
-  margin-top: 25px;
-  line-height: 1.6;
+a:visited {
+  text-decoration: none;
 }
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
+
 
 .image{
   margin-top: 35px;
@@ -80,14 +63,11 @@ body{
   width: 50%;
 }
 
-.donate{
-  margin-top: 5px;
+.instructions{
+  margin-top: 35px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 10%;
+  width: 30%;
 }
 
-.donate:hover{
-  opacity: 0.8;
-}
