@@ -1,5 +1,5 @@
 //Default when game starts running
-var fullscreen = true;
+var fullscreen = false;
 
 var elem = document.documentElement;
 
@@ -7,10 +7,8 @@ function toggleFullscreen(){
 
 if(fullscreen){
   unityInstance.SetFullscreen(0);
-  fullscreen = false;
 }else{
   unityInstance.SetFullscreen(1);
-    fullscreen = true;
 }
 
 }
@@ -93,7 +91,8 @@ function openFullscreenPromise() {
 document.documentElement.addEventListener('fullscreenchange', (event) => {
 
   if(buttonIsPressed){
-    unityInstance.SendMessage("FullscreenButton", "updateImageOnExternalFullscreen");
+    unityInstance.SendMessage("FullscreenButton", "updateImageFullscreenListener");
+    fullscreen = !fullscreen;
   }
 
   });
