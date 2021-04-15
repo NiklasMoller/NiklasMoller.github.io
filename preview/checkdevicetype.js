@@ -19,7 +19,7 @@ function getDeviceType(){
 function checkWebGL2(){
 
 return new Promise(function(resolve, reject) {
-  
+
   var mycanvas = document.createElement("canvas");
   // Get WebGLRenderingContext from canvas element.
   var gl = mycanvas.getContext("webgl2")
@@ -27,9 +27,7 @@ return new Promise(function(resolve, reject) {
   if(gl){
     resolve('WEBGL 2.0 context')
   }else{
-    reject(Error("WEBGL2 Failed"));
+    reject("WEBGL2 Failed");
   }
 
 })}
-
-
