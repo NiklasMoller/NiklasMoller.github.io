@@ -15,7 +15,7 @@ https://colorhunt.co/palette/118962
 */
 
 body {
-  background-color: #283149;
+  background-color: #eaece5;
 }
 
 li {
@@ -28,4 +28,32 @@ li {
   color: #b3dffc;
   margin-left: 20px;
   text-align: center;
+}
+
+.title{
+  font-family: 'Titillium Web', sans-serif;
+  color: #3b3a30;
+  text-align: center;
+  font-size: 40px; 
+}
+
+.subtitle{
+  font-family: 'Titillium Web', sans-serif;
+  color: #3b3a30;
+  text-align: center;
+  font-size: 25px; 
+}
+
+.courses{
+  font-family: 'Titillium Web', sans-serif;
+  color: #3b3a30;
+  text-align: center;
+  font-size: 15px; 
+}
+
+a{
+    font-family: 'Titillium Web', sans-serif;
+  color: #97a6a3;;
+  text-align: center;
+  font-size: 15px; 
 }
