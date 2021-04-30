@@ -28,10 +28,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
     <script>
-      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/8april.json", {onProgress: UnityProgress});
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/30april3.json", {onProgress: UnityProgress});
     </script>
   </head>
   <body style="margin:0; overflow:hidden">
+
+<div id="unityContainer"></div>
 
     <div id="overlay">
 
@@ -47,7 +49,7 @@
       <img id="introgif" src="intro.gif" style="visibility:visible"/>
 
     </div>
-<button id="btn" onclick="buttonClick()">I'v plugged my headphones in  ˃˃ </button>
+<button id="btn" onclick="buttonClick()">I've plugged my headphones in  ˃˃ </button>
            <br>
     <img id="loadingImage" src="no_desktop.png" style="visibility:hidden"/>
 </div>
@@ -58,13 +60,11 @@
 
 <script>
 
-//document.getElementById("overlay").style.display = "block";
 
-const removeOverlayMS = 2000;
+const removeOverlayMS = 4000;
 
 window.gameIsRunning = false;
 var buttonIsPressed = false;
-
 
 
 
@@ -173,10 +173,11 @@ fadeOutOverlay()
 
 
 
+
 getDeviceType()
 .then(result => {
   console.log(result);
-  return  checkWebGL2();
+  return checkWebGL2();
 }).then(result =>{
   console.log(result);
 
@@ -242,9 +243,9 @@ function fadeOutOverlay(){
   return new Promise((resolve, reject) =>{
 
       //Fade out and remove overlay
-      $("#overlay").fadeOut(1800);
-      $("#link").fadeOut(1800);
-      $("#bm").fadeOut(1800);
+      $("#overlay").fadeOut(3800);
+      $("#link").fadeOut(3800);
+      $("#bm").fadeOut(3800);
 
       resolve('Fade Out Overlay');
 

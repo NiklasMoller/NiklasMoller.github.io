@@ -18,16 +18,6 @@ function openFullscreen() {
 //This tells if fullscreen is supported
 if(document.fullscreenEnabled){
 
-/*
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) {
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) {
-    elem.msRequestFullscreen();
-  } else if(elem.mozRequestFullScreen){
-*/
-
 //https://developers.google.com/web/fundamentals/native-hardware/fullscreen
 
   var doc = window.document;
@@ -50,7 +40,7 @@ if(document.fullscreenEnabled){
 }
 
 
-
+//Currently not used
 function openFullscreenPromise() {
 
   return new Promise(function(resolve){
@@ -81,9 +71,6 @@ function openFullscreenPromise() {
 
   })
 
-
-  
-  
   }
 
 
@@ -96,3 +83,17 @@ document.documentElement.addEventListener('fullscreenchange', (event) => {
   }
 
   });
+
+
+  function getFullscreenInfo(){
+
+    var message = '';
+    if(fullscreen){
+      message = 'fullscreen'
+      unityInstance.SendMessage("FullscreenButton", "updateOnStart", message);
+    }else{
+      message = 'noFullscreen'
+      unityInstance.SendMessage("FullscreenButton", "updateOnStart", message);
+    }
+
+  }

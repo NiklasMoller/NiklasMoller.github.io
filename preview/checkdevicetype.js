@@ -5,10 +5,10 @@ function getDeviceType(){
     const ua = navigator.userAgent;
 
     if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
-      reject(Error("No desktop"));
+      reject("No desktop");
     }if (
       /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
-        reject(Error("No desktop"));
+        reject("No desktop");
   }else{
     resolve('Desktop');
   }

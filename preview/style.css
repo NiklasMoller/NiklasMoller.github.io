@@ -2,6 +2,14 @@
   background-color: black;
 }
 
+#header {
+  background-color: black;
+}
+
+#unityContainer {
+  background-color: black;
+}
+
 
 #overlay {
   position: fixed;
@@ -72,7 +80,9 @@ a:active {
 }
 
 #bm{
+    margin: auto;
     margin-top: 150px;
+    text-align: center;
 }
 
 
@@ -88,7 +98,9 @@ a:active {
 }
 
 #introgif {
+  margin: auto;
   visibility: hidden;
+  text-align: center;
 }
 
 
@@ -96,5 +108,5 @@ a:active {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 40%;
+    width: 80%;
 }
