@@ -47,26 +47,26 @@ function openFullscreenPromise() {
 
   //This tells if fullscreen is supported
   if(document.fullscreenEnabled){
-  
+
       //https://developers.google.com/web/fundamentals/native-hardware/fullscreen
-      
+
         var doc = window.document;
         var docEl = doc.documentElement;
-      
+
         var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
         var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
-      
+
         if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
           requestFullScreen.call(docEl);
-          resolve('Fullscreen opened');   
+          resolve('Fullscreen opened');
         }
         else {
           cancelFullScreen.call(doc);
         }
-      
-      
+
+
         }{
-          resolve('Fullscreen not opened');   
+          resolve('Fullscreen not opened');
         }
 
   })
